@@ -4,7 +4,7 @@ using System.Collections.Generic;
 class MainClass {
   public static void Main (string[] args) {
     //INSTANCIAR CLASSE VOTAR
-    Votar campanha = new Votar();
+
 		// USUÁRIO
 		List < User > listUser;
 		listUser = new List < User > (); 
@@ -13,7 +13,7 @@ class MainClass {
 		listIdeia	 = new List < Ideia > (); 
 
 		//DECLRAÇÃO DE VARIÁVEL
-		int opcao ;
+		int opcao,totalVotos=0 ;
     int idx=0;
 		string opc="n";
     do {				
@@ -134,11 +134,20 @@ class MainClass {
 				//MENU DEFINIR VENCEDOR
 				//CHAMAR VENCEDORA()
 						case 4:
-						Votar votar = new Votar();
+							Votar votar = new Votar();
 
-						votar.portfolio=listIdeia;
+							votar.portfolio=listIdeia;
 					  	Ideia c1 = votar.Vencedora();
-							Console.WriteLine("NOME: {0}\nIDEIA: {1}\nAREA {2}\nVOTOS: {3}", c1.dono.nome,c1.descricao,c1.areaAplicacao,c1.tVotos);		
+							Console.WriteLine("NOME: {0}\nIDEIA: {1}\nAREA {2}\nVOTOS: {3}", c1.dono.nome,c1.descricao,c1.areaAplicacao,c1.tVotos);
+							int votoGanhador = c1.tVotos;
+
+							// CONTAT O TOTAL DE VOTOS
+							for (int i = 0; i < listIdeia.Count; i++) {								
+
+									totalVotos += listIdeia[i].tVotos ;						
+							}		
+
+							Console.WriteLine("VALOR DOADO : R$ {0} ",( (votoGanhador/totalVotos)^2) * 30000 );
 						
 							break;	
 
